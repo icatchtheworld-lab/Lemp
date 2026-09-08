@@ -1,0 +1,8 @@
+# Optional e2 studio user makefile hook.
+
+# Prevent GNU Make on Windows from searching implicit rules for these parent
+# makefile hooks.  That search enumerates the project directory and GNU Make
+# 4.4 can fail with "readdir: Invalid argument" when it encounters a Unicode
+# filename.  Explicit empty recipes keep normal e2 studio builds reliable.
+../makefile.init ../makefile.defs ../makefile.targets:
+	@:

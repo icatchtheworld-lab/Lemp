@@ -1,0 +1,78 @@
+{
+  "model": {
+    "name": "book_face_yolofastest_256_v5_front_face_replay",
+    "architecture": "YOLO-Fastest",
+    "input_width": 256,
+    "input_height": 256,
+    "num_classes": 3,
+    "classes": ["closed_book", "open_book", "face"]
+  },
+  "preprocessing": {
+    "external_dtype": "float32",
+    "external_layout": "NCHW",
+    "external_shape": [1, 3, 256, 256],
+    "color_order": "RGB",
+    "normalization": "pixel / 255.0",
+    "resize": "letterbox, preserve aspect ratio",
+    "letterbox_value_rgb": [114, 114, 114]
+  },
+  "outputs": [
+    {
+      "shape": [1, 24, 16, 16],
+      "stride": 16,
+      "anchors": [[12, 18], [37, 49], [52, 132]]
+    },
+    {
+      "shape": [1, 24, 8, 8],
+      "stride": 32,
+      "anchors": [[115, 73], [119, 199], [242, 238]]
+    }
+  ],
+  "head": {
+    "anchors_per_level": 3,
+    "channels_per_anchor": 8,
+    "channel_order": ["tx", "ty", "tw", "th", "objectness", "class_0", "class_1", "class_2"],
+    "decode_xy": "(sigmoid(txy) * 2 - 0.5 + grid) * stride",
+    "decode_wh": "pow(sigmoid(twh) * 2, 2) * anchor",
+    "score": "sigmoid(objectness) * sigmoid(class_logit)"
+  },
+  "postprocessing": {
+    "general_confidence_threshold": 0.5,
+    "closed_book_confidence_threshold": 0.65,
+    "open_book_confidence_threshold": 0.5,
+    "face_confidence_threshold": 0.5,
+    "nms_iou_threshold": 0.45,
+    "class_agnostic_nms": true,
+    "demo_max_closed_book_detections": 1
+  },
+  "validation": {
+    "independent_test_images": 269,
+    "overall_map50": 0.822,
+    "overall_map50_95": 0.556,
+    "closed_book_map50": 0.655,
+    "open_book_map50": 0.819,
+    "face_map50": 0.992,
+    "face_recall": 0.983,
+    "frontal_face_challenge_images": 19,
+    "frontal_face_recall": 0.947,
+    "frontal_face_map50": 0.986,
+    "frontal_face_map50_95": 0.720
+  },
+  "ruhmi": {
+    "compiler_script_version": "1.1.0",
+    "mera_version": "2.6.0+pkg.4513",
+    "target_platform": "Renesas RA8P1",
+    "accelerator": "Ethos-U55-256",
+    "precision": "INT8",
+    "memory_mode": "Sram_Only",
+    "optimization": "Performance",
+    "weight_location": "Flash",
+    "calibration_samples": 100,
+    "tensor_arena_bytes": 983054,
+    "flash_parameter_bytes": 428992,
+    "mac_operations": 96827392,
+    "estimated_inferences_per_second": 107.326,
+    "npu_mac_coverage_percent": 100.0,
+    "npu_node_coverage_percent": 96.7
+  }
+}

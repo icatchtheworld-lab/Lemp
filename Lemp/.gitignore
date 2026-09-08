@@ -1,0 +1,43 @@
+# Local credentials
+src/Doubao/doubao_realtime_config.h
+
+# e2 studio build output
+Debug/
+Release/
+build/
+out/
+*.o
+*.d
+*.su
+*.elf
+*.map
+*.hex
+*.srec
+*.lst
+
+# Debugger logs and generated UI state
+*.log
+.settings/.plugin/
+.settings/eventpointSettings/
+.settings/CoverageSetting.xml
+.settings/DebugVirtualConsoleSetting.xml
+.settings/IORegisterSetting.xml
+.settings/vediagram.xml
+.settings/language.settings.xml
+.settings/com.renesas.cdt.ddsc.settingseditor.prefs
+.settings/com.renesas.cdt.ddsc.threads.configurator.prefs
+
+# Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.orig
+*.rej
